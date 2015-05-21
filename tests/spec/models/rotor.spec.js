@@ -4,13 +4,7 @@ describe("Rotor objects", function () {
 
     beforeEach(function () {
         if (!rotor) {
-            var characterPairs = [];
-
-            characterPairs.push(new app.models.CharacterPair(new app.models.Character('A'), new app.models.Character('B')));
-            characterPairs.push(new app.models.CharacterPair(new app.models.Character('B'), new app.models.Character('C')));
-            characterPairs.push(new app.models.CharacterPair(new app.models.Character('C'), new app.models.Character('D')));
-
-            rotor = new app.models.Rotor('Rotor 1', 0, characterPairs);
+            rotor = new app.models.Rotor('Rotor 1', 0, ['B','C', 'D']);
         }
     });
 

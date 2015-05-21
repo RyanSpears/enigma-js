@@ -14,10 +14,10 @@ module app.models {
         characterPairs: app.models.ICharacterPair[];
         orientation: number;
 
-        constructor(name: string, orientation: number, characterPairs: app.models.ICharacterPair[]){
+        constructor(name: string, orientation: number, cipher: string[]){
             this.name = name;
             this.orientation = orientation;
-            this.characterPairs = characterPairs;
+            this.characterPairs = this.generateCharacterPairs(cipher);
         }
 
         getLeft(): app.models.ICharacter {
@@ -34,6 +34,25 @@ module app.models {
             if(this.orientation > (this.characterPairs.length - 1)){
                 this.orientation = 0;
             }
+        }
+
+        generateCharacterPairs(cipher: string[]): app.models.ICharacterPair[]{
+
+            var pairs = new Array<app.models.ICharacterPair>();
+
+            cipher.forEach(function(element, index){
+                var charCode = element.charCodeAt(0);
+                if(charCode < 65 || charCode > 90)
+                    throw "Incorrect character entered in cipher";
+
+                var right = new app.models.Character(String.fromCharCode(65 + index));
+                var left = new app.models.Character(element);
+
+                var characterPair =new app.models.CharacterPair(right, left)
+                pairs.push(characterPair);
+            })
+
+            return pairs;
         }
     }
 }
