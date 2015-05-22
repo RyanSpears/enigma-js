@@ -21,9 +21,7 @@ module.exports = function (config) {
             //application scripts
             'app/*.js',
             'app/**/*.js',
-            //'tests/spec/**/*.js'
-            'tests/spec/models/rotor.spec.js'
-
+            'tests/spec/**/*.js'
         ],
 
 

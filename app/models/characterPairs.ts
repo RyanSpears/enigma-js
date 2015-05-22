@@ -1,4 +1,5 @@
 module app.models {
+
     export interface ICharacterPair {
         right: app.models.ICharacter;
         left: app.models.ICharacter;
