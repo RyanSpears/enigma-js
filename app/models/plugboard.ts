@@ -1,16 +1,36 @@
 module app.models {
 
-    export interface IReflector {
+    export interface IPlugBoard {
         characterPairs: app.models.ICharacterPair[];
-        scramble: (character: app.models.Character) => app.models.Character;
+        getLeft: (right: app.models.ICharacter) => app.models.Character;
+        getRight: (left: app.models.ICharacter) => app.models.Character;
     }
 
-    export class Reflector implements IReflector {
-
+    export class PlugBoard implements IPlugBoard {
         characterPairs: app.models.ICharacterPair[];
 
         constructor(cipher: string[]){
             this.characterPairs = this.generateCharacterPairs(cipher);
+        }
+
+        getLeft(right: app.models.ICharacter): app.models.ICharacter {
+            return this.characterPairs[right.zeroBasedCharCode()].left;
+        }
+
+        getRight(left: app.models.ICharacter): app.models.ICharacter {
+            var right: app.models.CharacterPair;
+
+            this.characterPairs.forEach(function(element, index){
+                if(element.left.character === left.character){
+                    right = element.right;
+                }
+            });
+
+            if(!right){
+                throw "Character not found";
+            }
+
+            return right;
         }
 
         generateCharacterPairs(cipher: string[]): app.models.ICharacterPair[]{
@@ -30,12 +50,6 @@ module app.models {
             })
 
             return pairs;
-        }
-
-        scramble(character: app.models.Character): app.models.Character {
-            var charCode = character.zeroBasedCharCode();
-
-            return this.characterPairs[charCode].left;
         }
     }
 }

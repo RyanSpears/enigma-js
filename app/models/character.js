@@ -15,6 +15,12 @@ var app;
                 }
                 return this.character.charCodeAt(0);
             };
+            Character.prototype.zeroBasedCharCode = function () {
+                if (!this.character) {
+                    throw new Error('Character is not defined');
+                }
+                return this.character.charCodeAt(0) - 65;
+            };
             return Character;
         })();
         models.Character = Character;

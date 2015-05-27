@@ -3,6 +3,7 @@ module app.models {
     export interface ICharacter {
         character: string;
         characterCode: () => number;
+        zeroBasedCharCode: () => number;
     }
 
     export class Character implements ICharacter {
@@ -22,6 +23,14 @@ module app.models {
             }
 
             return this.character.charCodeAt(0);
+        }
+
+        zeroBasedCharCode():number{
+            if (!this.character) {
+                throw new Error('Character is not defined');
+            }
+
+            return this.character.charCodeAt(0) - 65;
         }
     }
 }
