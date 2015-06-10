@@ -18,9 +18,9 @@ module app.models {
         }
 
         getRight(left: app.models.ICharacter): app.models.ICharacter {
-            var right: app.models.CharacterPair;
+            var right: app.models.CharacterPair = null;
 
-            this.characterPairs.forEach(function(element, index){
+            this.characterPairs.forEach(function(element){
                 if(element.left.character === left.character){
                     right = element.right;
                 }

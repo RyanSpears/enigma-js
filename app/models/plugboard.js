@@ -10,8 +10,8 @@ var app;
                 return this.characterPairs[right.zeroBasedCharCode()].left;
             };
             PlugBoard.prototype.getRight = function (left) {
-                var right;
-                this.characterPairs.forEach(function (element, index) {
+                var right = null;
+                this.characterPairs.forEach(function (element) {
                     if (element.left.character === left.character) {
                         right = element.right;
                     }
