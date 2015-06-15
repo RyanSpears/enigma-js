@@ -1,15 +1,17 @@
-module app.models {
+/// <reference path="character.ts" />
+
+module Models {
 
     export interface ICharacterPair {
-        right: app.models.ICharacter;
-        left: app.models.ICharacter;
+        right: Models.ICharacter;
+        left: Models.ICharacter;
     }
 
     export class CharacterPair implements ICharacterPair {
-        right: app.models.Character;
-        left: app.models.Character;
+        right: Models.Character;
+        left: Models.Character;
 
-        constructor(right: app.models.Character, left: app.models.Character) {
+        constructor(right: Models.Character, left: Models.Character) {
             this.right = right;
             this.left = left;
         }

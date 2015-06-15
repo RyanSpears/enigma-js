@@ -2,25 +2,26 @@
 /// <reference path="characterPairs.ts" />
 var Models;
 (function (Models) {
-    var Rotor = (function () {
-        function Rotor(name, orientation, cipher) {
-            this.name = name;
-            this.orientation = orientation;
+    var Scrambler = (function () {
+        function Scrambler(cipher) {
             this.characterPairs = this.generateCharacterPairs(cipher);
         }
-        Rotor.prototype.getLeft = function () {
-            return this.characterPairs[this.orientation].left;
+        Scrambler.prototype.getLeft = function (right) {
+            return this.characterPairs[right.zeroBasedCharCode()].left;
         };
-        Rotor.prototype.getRight = function () {
-            return this.characterPairs[this.orientation].right;
-        };
-        Rotor.prototype.rotate = function () {
-            this.orientation = this.orientation + 1;
-            if (this.orientation > (this.characterPairs.length - 1)) {
-                this.orientation = 0;
+        Scrambler.prototype.getRight = function (left) {
+            var right = null;
+            this.characterPairs.forEach(function (element) {
+                if (element.left.character === left.character) {
+                    right = element.right;
+                }
+            });
+            if (!right) {
+                throw "Character not found";
             }
+            return right;
         };
-        Rotor.prototype.generateCharacterPairs = function (cipher) {
+        Scrambler.prototype.generateCharacterPairs = function (cipher) {
             var pairs = new Array();
             cipher.forEach(function (element, index) {
                 var charCode = element.charCodeAt(0);
@@ -33,8 +34,8 @@ var Models;
             });
             return pairs;
         };
-        return Rotor;
+        return Scrambler;
     })();
-    Models.Rotor = Rotor;
+    Models.Scrambler = Scrambler;
 })(Models || (Models = {}));
-//# sourceMappingURL=rotor.js.map
+//# sourceMappingURL=scrambler.js.map

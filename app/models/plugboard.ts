@@ -1,24 +1,22 @@
-module app.models {
+/// <reference path="character.ts" />
+/// <reference path="characterPairs.ts" />
+/// <reference path="scrambler.ts" />
 
-    export interface IPlugBoard {
-        characterPairs: app.models.ICharacterPair[];
-        getLeft: (right: app.models.ICharacter) => app.models.Character;
-        getRight: (left: app.models.ICharacter) => app.models.Character;
-    }
+module Models {
 
-    export class PlugBoard implements IPlugBoard {
-        characterPairs: app.models.ICharacterPair[];
+    export class PlugBoard implements Models.IScrambler {
+        characterPairs: Models.ICharacterPair[];
 
         constructor(cipher: string[]){
             this.characterPairs = this.generateCharacterPairs(cipher);
         }
 
-        getLeft(right: app.models.ICharacter): app.models.ICharacter {
+        getLeft(right: Models.ICharacter): Models.ICharacter {
             return this.characterPairs[right.zeroBasedCharCode()].left;
         }
 
-        getRight(left: app.models.ICharacter): app.models.ICharacter {
-            var right: app.models.CharacterPair = null;
+        getRight(left: Models.ICharacter): Models.ICharacter {
+            var right: Models.ICharacter = null;
 
             this.characterPairs.forEach(function(element){
                 if(element.left.character === left.character){
@@ -33,19 +31,19 @@ module app.models {
             return right;
         }
 
-        generateCharacterPairs(cipher: string[]): app.models.ICharacterPair[]{
+        generateCharacterPairs(cipher: string[]): Models.ICharacterPair[]{
 
-            var pairs = new Array<app.models.ICharacterPair>();
+            var pairs = new Array<Models.ICharacterPair>();
 
             cipher.forEach(function(element, index){
                 var charCode = element.charCodeAt(0);
                 if(charCode < 65 || charCode > 90)
                     throw "Incorrect character entered in cipher";
 
-                var right = new app.models.Character(String.fromCharCode(65 + index));
-                var left = new app.models.Character(element);
+                var right = new Models.Character(String.fromCharCode(65 + index));
+                var left = new Models.Character(element);
 
-                var characterPair =new app.models.CharacterPair(right, left)
+                var characterPair =new Models.CharacterPair(right, left)
                 pairs.push(characterPair);
             })
 

@@ -2,12 +2,12 @@ describe("Characters objects", function(){
 
     it("Error should be thrown if a String with more than 1 character is entered", function(){
         expect(function() {
-            var character = new app.models.Character('More than one character');
+            var character = new Models.Character('More than one character');
         }).toThrowError("Please enter a single character");
     });
 
     it("Character of 'A' should return characterCode() of 65", function(){
-        var character = new app.models.Character('A');
+        var character = new Models.Character('A');
 
         expect(character).toBeDefined();
 
@@ -17,7 +17,7 @@ describe("Characters objects", function(){
     });
 
     it("Character of 'Z' should return characterCode() of 65", function(){
-        var character = new app.models.Character('Z');
+        var character = new Models.Character('Z');
 
         expect(character).toBeDefined();
 

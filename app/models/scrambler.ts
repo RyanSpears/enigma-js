@@ -3,17 +3,37 @@
 
 module Models {
 
-    export interface IReflector {
+    export interface IScrambler {
         characterPairs: Models.ICharacterPair[];
-        scramble: (character: Models.Character) => Models.Character;
+        getLeft: (right: Models.ICharacter) => Models.Character;
+        getRight: (left: Models.ICharacter) => Models.Character;
     }
 
-    export class Reflector implements IReflector {
-
+    export class Scrambler implements IScrambler {
         characterPairs: Models.ICharacterPair[];
 
         constructor(cipher: string[]){
             this.characterPairs = this.generateCharacterPairs(cipher);
+        }
+
+        getLeft(right: Models.ICharacter): Models.ICharacter {
+            return this.characterPairs[right.zeroBasedCharCode()].left;
+        }
+
+        getRight(left: Models.ICharacter): Models.ICharacter {
+            var right: Models.ICharacter = null;
+
+            this.characterPairs.forEach(function(element){
+                if(element.left.character === left.character){
+                    right = element.right;
+                }
+            });
+
+            if(!right){
+                throw "Character not found";
+            }
+
+            return right;
         }
 
         generateCharacterPairs(cipher: string[]): Models.ICharacterPair[]{
@@ -33,12 +53,6 @@ module Models {
             })
 
             return pairs;
-        }
-
-        scramble(character: Models.Character): Models.Character {
-            var charCode = character.zeroBasedCharCode();
-
-            return this.characterPairs[charCode].left;
         }
     }
 }

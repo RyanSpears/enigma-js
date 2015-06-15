@@ -1,33 +1,32 @@
-module app.models {
+module Models {
 
     export interface ICharacter {
-        value: string;
+        character: string;
         characterCode: () => number;
         zeroBasedCharCode: () => number;
     }
 
     export class Character implements ICharacter {
+        character: string;
 
-        value: string;
-
-        constructor(private character: string) {
+        constructor(character: string) {
             if (character.length > 1 || character.length == 0) {
                 throw new Error('Please enter a single character');
             }
 
-            this.value = character;
+            this.character = character;
         }
 
         characterCode():number {
-            if (!this.value) {
+            if (!this.character) {
                 throw new Error('Character is not defined');
             }
 
-            return this.value.charCodeAt(0);
+            return this.character.charCodeAt(0);
         }
 
         zeroBasedCharCode():number{
-            if (!this.value) {
+            if (!this.character) {
                 throw new Error('Character is not defined');
             }
 

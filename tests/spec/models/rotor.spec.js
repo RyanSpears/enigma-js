@@ -4,7 +4,7 @@ describe("Rotor objects", function () {
 
     beforeEach(function () {
         if (!rotor) {
-            rotor = new app.models.Rotor('Rotor 1', 0, ['B','C', 'D']);
+            rotor = new Models.Rotor('Rotor 1', 0, ['B','C', 'D']);
         }
     });
 

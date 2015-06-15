@@ -3,7 +3,7 @@ describe("CharacterPair objects", function(){
     var characterPair;
 
     beforeEach(function(){
-        characterPair = new app.models.CharacterPair(new app.models.Character('A'), new app.models.Character('B'));
+        characterPair = new Models.CharacterPair(new Models.Character('A'), new Models.Character('B'));
     })
 
     it("CharacterPair should be defined", function(){
