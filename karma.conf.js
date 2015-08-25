@@ -1,13 +1,8 @@
-/**
- * Created by ryanspears on 17/05/15.
- */
-
 module.exports = function (config) {
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '',
-
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -19,7 +14,7 @@ module.exports = function (config) {
             // library files
             'bower_components/jquery/dist/jquery.js',
             //application scripts
-            'app/*.js',
+            'app/models/scrambler.js',
             'app/**/*.js',
             'tests/spec/**/*.js'
         ],
