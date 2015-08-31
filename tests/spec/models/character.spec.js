@@ -6,23 +6,36 @@ describe("Characters objects", function(){
         }).toThrowError("Please enter a single character");
     });
 
+    it("Error should be thrown if a a lowercase character is entered", function(){
+        expect(function() {
+            var character = new Models.Character('a');
+        }).toThrowError("Please enter a alphabetical character");
+    });
+
     it("Character of 'A' should return characterCode() of 65", function(){
+        // Arrange
         var character = new Models.Character('A');
 
         expect(character).toBeDefined();
 
+        // Act
         var code = character.characterCode();
 
-        expect(65).toBe(code);
+        // Assert
+        expect(code).toBe(65);
     });
 
-    it("Character of 'Z' should return characterCode() of 65", function(){
+    it("Character of 'Z' should return characterCode() of 90", function(){
+
+        // Arrange
         var character = new Models.Character('Z');
 
         expect(character).toBeDefined();
 
+        // Act
         var code = character.characterCode();
 
-        expect(90).toBe(code);
+        // Assert
+        expect(code).toBe(90);
     });
 });

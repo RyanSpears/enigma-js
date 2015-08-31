@@ -1,14 +1,29 @@
-module app.models {
+/// <reference path="rotor.ts" />
 
-    export interface IEnigma {
-        //scrambleLetter: () => app.models.Character
-    }
+module Models {
 
-    export class Enigma implements IEnigma {
+    export class Enigma {
 
-        constructor(rotor1: app.models.IRotor,
-            rotor2: app.models.IRotor,
-            rotor3: app.models.IRotor){
+        orientationRotor1: number;
+        orientationRotor2: number;
+        orientationRotor3: number;
+
+        public rotor1: Models.IRotor;
+        public rotor2: Models.IRotor;
+        public rotor3: Models.IRotor;
+
+        constructor(rotor1: Models.IRotor,
+            rotor2: Models.IRotor,
+            rotor3: Models.IRotor,
+            initialSettings: string[]){
+
+            this.rotor1 = rotor1;
+            this.rotor2 = rotor2;
+            this.rotor3 = rotor3;
+
+            this.orientationRotor1 = initialSettings[0].charCodeAt(0);
+            this.orientationRotor2 = initialSettings[1].charCodeAt(0);
+            this.orientationRotor3 = initialSettings[2].charCodeAt(0);
         }
     }
 }

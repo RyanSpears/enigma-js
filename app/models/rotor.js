@@ -14,6 +14,9 @@ var Models;
         Rotor.prototype.getRight = function () {
             return this.characterPairs[this.orientation].right;
         };
+        Rotor.prototype.setOrientation = function (orientation) {
+            this.orientation = orientation;
+        };
         Rotor.prototype.rotate = function () {
             this.orientation = this.orientation + 1;
             if (this.orientation > (this.characterPairs.length - 1)) {

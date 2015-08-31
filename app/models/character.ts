@@ -7,11 +7,19 @@ module Models {
     }
 
     export class Character implements ICharacter {
-        character: string;
+        character:string;
 
-        constructor(character: string) {
+        constructor(character:string) {
             if (character.length > 1 || character.length == 0) {
                 throw new Error('Please enter a single character');
+            }
+
+            if(character.charCodeAt(0) > 97 && character.charCodeAt(0) < 123){
+                character = character.toLowerCase();
+            }
+
+            if(character.charCodeAt(0) < 65 || character.charCodeAt(0) > 90){
+                throw new Error('Please enter a alphabetical character')
             }
 
             this.character = character;
@@ -25,7 +33,7 @@ module Models {
             return this.character.charCodeAt(0);
         }
 
-        zeroBasedCharCode():number{
+        zeroBasedCharCode():number {
             if (!this.character) {
                 throw new Error('Character is not defined');
             }

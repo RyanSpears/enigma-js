@@ -10,6 +10,7 @@ module Models {
         getLeft: () => Models.Character;
         getRight: () => Models.Character;
         rotate: () => void;
+        setOrientation: (orientation: number) => void;
     }
 
     export class Rotor implements IRotor {
@@ -29,6 +30,10 @@ module Models {
 
         getRight(): Models.ICharacter {
             return this.characterPairs[this.orientation].right;
+        }
+
+        setOrientation(orientation: number): void {
+            this.orientation = orientation;
         }
 
         rotate(): void {
