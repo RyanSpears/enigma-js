@@ -1,8 +1,12 @@
 describe("Enigma ", function () {
 
-    var enigma, rotor1, rotor2, rotor3;
+    var enigma, rotor1, rotor2, rotor3, plugboard;
 
     beforeEach(function () {
+        if(!plugboard) {
+            plugboard = new Models.PlugBoard(['A','B', 'C']);
+        }
+        
         if(!rotor1) {
             rotor1 = new Models.Rotor("Rotor 1", 0, ['A', 'B', 'C']);
         }

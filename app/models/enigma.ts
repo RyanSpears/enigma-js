@@ -25,5 +25,25 @@ module Models {
             this.orientationRotor2 = initialSettings[1].charCodeAt(0);
             this.orientationRotor3 = initialSettings[2].charCodeAt(0);
         }
+        
+        scramble = (character: Models.Character): Models.Character => {
+            // rotor 1
+            
+            // rotor 2
+            
+            // rotor 3
+            
+            // reflector
+            
+            // rotor 3
+            
+            // rotor 2
+            
+            // rotor 1
+            
+            // shift rotors
+            
+            return new Models.Character('A');  
+        }
     }
 }

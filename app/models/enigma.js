@@ -3,6 +3,17 @@ var Models;
 (function (Models) {
     var Enigma = (function () {
         function Enigma(rotor1, rotor2, rotor3, initialSettings) {
+            this.scramble = function (character) {
+                // rotor 1
+                // rotor 2
+                // rotor 3
+                // reflector
+                // rotor 3
+                // rotor 2
+                // rotor 1
+                // shift rotors
+                return new Models.Character('A');
+            };
             this.rotor1 = rotor1;
             this.rotor2 = rotor2;
             this.rotor3 = rotor3;
