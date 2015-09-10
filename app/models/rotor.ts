@@ -7,8 +7,8 @@ module Models {
         name: string;
         characterPairs: Models.ICharacterPair[];
         orientation: number;
-        getLeft: () => Models.Character;
-        getRight: () => Models.Character;
+        getLeft: (right: Models.ICharacter) => Models.Character;
+        getRight: (left: Models.ICharacter) => Models.Character;
         rotate: () => void;
         setOrientation: (orientation: number) => void;
     }
@@ -23,14 +23,34 @@ module Models {
             this.orientation = orientation;
             this.characterPairs = this.generateCharacterPairs(cipher);
         }
-
-        getLeft(): Models.ICharacter {
-            return this.characterPairs[this.orientation].left;
+        
+       getLeft(right: Models.ICharacter): Models.ICharacter {
+            return this.characterPairs[right.zeroBasedCharCode()].left;
         }
 
-        getRight(): Models.ICharacter {
-            return this.characterPairs[this.orientation].right;
+       getRight(left: Models.ICharacter): Models.ICharacter {
+            var right: Models.ICharacter = null;
+
+            this.characterPairs.forEach(function(element){
+                if(element.left.character === left.character){
+                    right = element.right;
+                }
+            });
+
+            if(!right){
+                throw "Character not found";
+            }
+
+            return right;
         }
+
+        // getLeft(): Models.ICharacter {
+        //     return this.characterPairs[this.orientation].left;
+        // }
+
+        // getRight(): Models.ICharacter {
+        //     return this.characterPairs[this.orientation].right;
+        // }
 
         setOrientation(orientation: number): void {
             this.orientation = orientation;

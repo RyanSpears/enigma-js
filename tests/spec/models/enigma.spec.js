@@ -47,4 +47,12 @@ describe("Enigma ", function () {
     it("Initial orientation of Rotor 1 is 67", function () {
         expect(67).toBe(enigma.orientationRotor3);
     });
+    
+     it("Initial orientation of Rotor 1 is 67", function () {
+        // Arrange
+        
+        // Act
+        
+        // Assert
+    });
 });
